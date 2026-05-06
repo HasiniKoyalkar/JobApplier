@@ -1,0 +1,61 @@
+# config/profile.example.yml
+# ─────────────────────────────────────────────────────────────────────────────
+# SETUP: Copy this file to config/profile.yml and fill in YOUR details.
+# This file stays as a template. profile.yml is gitignored (your data stays local).
+# ─────────────────────────────────────────────────────────────────────────────
+
+candidate:
+  name: Koyalkar Hasini
+  email: hasinikoyalkar12@gmail.com
+  phone: "+91-7013854092"
+  linkedin: https://www.linkedin.com/in/hasini-koyalkar-104b1b347/
+  github: https://github.com/HasiniKoyalkar
+  education: B.Tech [CSE], [Keshav Memorial Institute of Technology], [2027]
+  experience_years: 1.5
+  current_role: Your Current Role at Company Name
+  #current_ctc_lpa: 8        # Your current CTC (used for negotiation context)
+  #notice_period_days: 30
+
+  skills:
+    - Python
+    - SQL
+    - pandas
+    - React
+    - MERN development
+    - Flask
+    - Cloud Computing
+    # Add only skills you can actually demonstrate in an interview.
+    # Don't pad this. The AI will use this to evaluate every job.
+
+  target_roles:
+    - Data Analyst Intern
+    - AI Engineer Intern
+    - Cloud developer Intern
+    
+
+  target_salary_lpa:
+    min: 5          # Hard floor — never apply below this
+    max: 10         # Ideal target for negotiation
+    walk_away: 3      # If offer is below this, walk away
+
+  locations:
+    - Bangalore
+    - Hyderabad
+    - Mumbai
+    - Remote
+    # Remove cities you genuinely wouldn't relocate to.
+
+  career_narrative: |
+    CS student at KMIT (8.95 GPA) building full-stack systems at the intersection of AI and real-world impact. My work ranges from real-time facial emotion detection for child therapy   platforms to CNN-based plant disease classifiers with 93% accuracy. I care about the whole product — from model training to the interface a 7-year-old uses.
+Currently exploring: RAG systems, multimodal AI, and scalable ML deployment.
+search:
+  experience_filter: "0-2"    # Naukri/portal filter (years)
+  freshness_days: 14           # Only jobs posted in last N days
+  boards:
+    greenhouse: true
+    lever: true
+    ashby: true
+
+evaluator:
+  min_score_to_include: 3.5   # Grade C+ and above (1.0–5.0 scale)
+  auto_log_to_tracker: true   # Auto-add A/B jobs to pipeline after evaluation

@@ -12,7 +12,10 @@
     "dedup":     "node scripts/dedup-tracker.mjs",
     "sync-check":"node scripts/cv-sync-check.mjs",
     "dashboard": "node scripts/open-dashboard.mjs",
-    "setup":     "node scripts/doctor.mjs && echo '\nSetup complete. Run: npm run scan'"
+    "setup":     "node scripts/doctor.mjs && echo '\nSetup complete. Run: npm run scan'",
+    "myapply": "node scripts/myapply.mjs",
+    "export": "node scripts/export-csv.mjs",
+    "mytracker": "node scripts/mytracker.mjs"
   },
   "keywords": [
     "ai", "job-search", "india", "claude-code", "gemini-cli",

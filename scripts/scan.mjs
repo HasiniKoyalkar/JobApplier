@@ -1,18 +1,13 @@
-#!/usr/bin/env node
-/**
- * scripts/scan.mjs — career-ops-india portal scanner
- * 
- * Hits Greenhouse, Lever, and Ashby ATS APIs for 60+ Indian companies.
- * Zero LLM tokens. Zero scraping. Clean JSON responses.
- * 
- * Run:  npm run scan
- * Run:  node scripts/scan.mjs --board greenhouse
- * Run:  node scripts/scan.mjs --json    (raw JSON output)
- */
-
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+// Add this right after the imports
+console.log(`
+╔════════════════════════════════════════════╗
+║  🎯 Hasini's Personalized Job Scanner     ║
+║  Scanning for YOUR next opportunity...    ║
+╚════════════════════════════════════════════╝
+`);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -47,12 +42,12 @@ function readPortals() {
     if (line.startsWith("#") || !line.trim()) continue;
     const indent = line.match(/^(\s*)/)[1].length;
     const content = line.trim();
-    if (indent === 0 && content.endsWith(":")) { section = content.replace(":",""); continue; }
+    if (indent === 0 && content.endsWith(":")) { section = content.replace(":", ""); continue; }
     if (indent === 2 && content.startsWith("- name:")) {
-      current = { name: content.replace("- name:","").trim() };
+      current = { name: content.replace("- name:", "").trim() };
       if (result[section]) result[section].push(current);
     } else if (indent === 4 && current) {
-      const [k,...v] = content.split(":");
+      const [k, ...v] = content.split(":");
       current[k.trim()] = v.join(":").trim();
     }
   }
@@ -141,10 +136,39 @@ function matches(job, roles, maxExp) {
   return (titleMatch || kwMatch) && locMatch && noNoise;
 }
 
+// ── CUSTOM FRESHER FILTER FUNCTION ────────────────────────────────────────────
+function filterFresherJobs(jobs) {
+  const fresherKeywords = [
+    'entry', 'entry-level', 'entry level',
+    'fresher', '0-2', '0-3', '1-2', '1-3',
+    'associate', 'junior', 'trainee', 'intern',
+    'graduate', 'recent grad', 'early career'
+  ];
+  
+  const seniorKeywords = ['senior', 'lead', 'principal', 'staff', 'architect', 'manager', 'director'];
+  
+  const fresherJobs = jobs.filter(job => {
+    const title = (job.title || '').toLowerCase();
+    const snippet = (job.snippet || '').toLowerCase();
+    const allText = title + ' ' + snippet;
+    
+    // Must have fresher keywords
+    const hasFresherKeyword = fresherKeywords.some(keyword => allText.includes(keyword));
+    // Must NOT have senior keywords
+    const hasNoSeniorKeyword = !seniorKeywords.some(keyword => title.includes(keyword));
+    
+    return hasFresherKeyword && hasNoSeniorKeyword;
+  });
+  
+  return fresherJobs;
+}
+// ── END CUSTOM FRESHER FILTER ─────────────────────────────────────────────────
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 const args = process.argv.slice(2);
 const boardFilter = args.find(a => a.startsWith("--board="))?.split("=")[1];
 const jsonMode = args.includes("--json");
+const showAllJobs = args.includes("--all");  // New flag to bypass fresher filter
 
 const { roles, expYears } = readConfig();
 const portals = readPortals();
@@ -177,11 +201,33 @@ await scanBoard("ashby",      portals.ashby,      fetchAshby,      normAB);
 
 // Dedup by title+company
 const seen = new Set();
-const unique = results.filter(j => {
+let unique = results.filter(j => {
   const key = `${j.title.toLowerCase().trim()}|${j.company.toLowerCase().trim()}`;
   if (seen.has(key)) return false;
   seen.add(key); return true;
 });
+
+// ========== APPLY FRESHER FILTER (unless --all flag is used) ==========
+let fresherFiltered = [];
+if (!showAllJobs) {
+  fresherFiltered = filterFresherJobs(unique);
+  console.log(`\n${"─".repeat(50)}`);
+  console.log(`🎯 CUSTOM FRESHER FILTER RESULTS:`);
+  console.log(`${"─".repeat(50)}`);
+  console.log(`   Total jobs found: ${unique.length}`);
+  console.log(`   Fresher-friendly: ${fresherFiltered.length}`);
+  console.log(`   Senior/Experienced: ${unique.length - fresherFiltered.length}`);
+  
+  if (fresherFiltered.length > 0) {
+    console.log(`\n✅ Showing ${fresherFiltered.length} fresher-friendly jobs only.`);
+    console.log(`   Tip: Run with '--all' flag to see all jobs.\n`);
+    unique = fresherFiltered;
+  } else {
+    console.log(`\n⚠️ No fresher-friendly jobs found in this scan.`);
+    console.log(`   Showing all ${unique.length} jobs instead.\n`);
+  }
+}
+// ========== END FRESHER FILTER ==========
 
 // Sort: tier 1 first, then by source
 unique.sort((a,b) => (a.tier === "1" ? -1 : 1) - (b.tier === "1" ? -1 : 1));
@@ -193,6 +239,14 @@ const out = { scanned_at: new Date().toISOString(), total: unique.length,
               errors: errors.length, jobs: unique };
 fs.writeFileSync(path.join(dataDir, "scan_results.json"), JSON.stringify(out, null, 2));
 
+// Save fresher filtered results separately
+if (fresherFiltered.length > 0 && !showAllJobs) {
+  const fresherOut = { scanned_at: new Date().toISOString(), total: fresherFiltered.length,
+                        errors: errors.length, jobs: fresherFiltered };
+  fs.writeFileSync(path.join(dataDir, "fresher_jobs.json"), JSON.stringify(fresherOut, null, 2));
+  console.log(`💾 Fresher jobs also saved to data/fresher_jobs.json`);
+}
+
 if (jsonMode) { console.log(JSON.stringify(out)); process.exit(0); }
 
 console.log(`\n${"─".repeat(50)}`);
@@ -201,6 +255,8 @@ console.log(`${"─".repeat(50)}\n`);
 
 if (unique.length === 0) {
   console.log("No matches found. Try broadening your target roles in config/profile.yml.\n");
+  console.log("Or run with '--all' to see all jobs regardless of experience level:");
+  console.log("  npm run scan -- --all\n");
   process.exit(0);
 }
 
@@ -223,5 +279,7 @@ if (tier2.length) {
 
 console.log(`\n💾 Full list saved to data/scan_results.json`);
 console.log(`\nNext steps:`);
-console.log(`  → Open Claude Code or Gemini CLI in this folder`);
-console.log(`  → /evaluate [any URL above]  to get a full A–F score\n`);
+console.log(`  → Open Gemini CLI: gemini`);
+console.log(`  → /evaluate [any URL above]  to get a full A–F score`);
+console.log(`\nTo see all jobs (including senior roles):`);
+console.log(`  → npm run scan -- --all\n`);

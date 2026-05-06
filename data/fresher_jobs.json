@@ -1,0 +1,55 @@
+{
+  "scanned_at": "2026-05-06T12:25:44.783Z",
+  "total": 4,
+  "errors": 184,
+  "jobs": [
+    {
+      "source": "greenhouse",
+      "company": "Sigmoid",
+      "tier": "\"2\"",
+      "title": "Intern - Branding",
+      "location": "Bengaluru, Karnataka, India",
+      "url": "https://job-boards.greenhouse.io/sigmoid/jobs/8503592002",
+      "posted_at": "2026-05-05T02:35:07-04:00",
+      "department": "Marketing",
+      "remote": false,
+      "snippet": "&lt;p&gt;&lt;strong&gt;About Sigmoid:&lt;/strong&gt;&lt;br&gt;Sigmoid enables business transformation using data and analytics, leveraging real-time decisions through insights, by building modern data architectures using cloud and open source. Some of the world’s largest Fortune 1000 data producers "
+    },
+    {
+      "source": "greenhouse",
+      "company": "Druva",
+      "tier": "\"2\"",
+      "title": "Associate Technical Support Engineer",
+      "location": "Pune, Maharashtra, India",
+      "url": "https://www.druva.com/why-druva/explore/careers/jobs/8517854002/?gh_jid=8517854002",
+      "posted_at": "2026-05-05T02:28:57-04:00",
+      "department": "Support",
+      "remote": false,
+      "snippet": "&lt;p&gt;&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;About Druva:&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;Druva enables cyber, data and operational resilience for every organization with the Data Resiliency Cloud, the industry’s first and only at scale SaaS solution. Customers can radically simplify data protection"
+    },
+    {
+      "source": "greenhouse",
+      "company": "InMobi",
+      "tier": "\"1\"",
+      "title": "Intern - Industrial Trainee",
+      "location": "Bangalore",
+      "url": "https://job-boards.greenhouse.io/inmobi/jobs/7793050",
+      "posted_at": "2026-04-23T20:56:33-04:00",
+      "department": "Marc Steifman (Finance and Corp Dev- Ads)",
+      "remote": false,
+      "snippet": "&lt;div class=&quot;content-intro&quot;&gt;&lt;p&gt;&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;InMobi Advertising&lt;/strong&gt;&amp;nbsp;is a global technology leader helping marketers win the moments that matter. Our advertising platform reaches over 2 billion people across 150+ countries and turns real-ti"
+    },
+    {
+      "source": "lever",
+      "company": "Meesho",
+      "tier": "\"1\"",
+      "title": "Software Development Engineer - IV - Backend",
+      "location": "Bangalore, Karnataka",
+      "url": "https://jobs.lever.co/meesho/b20da5af-c188-4123-b54b-5438c8a62628",
+      "posted_at": "2024-12-03T14:29:04.167Z",
+      "department": "Tech",
+      "remote": false,
+      "snippet": "About Meesho \n \nMission and Vision \n \nMeesho is India’s fastest-growing internet commerce company, driven by the mission to democratize internet commerce for everyone (DICE). Our vision is to enable 100 million small businesses and entrepreneurs in India to succeed online, making online commerce acc"
+    }
+  ]
+}

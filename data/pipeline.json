@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "company": "Microsoft",
+    "role": "AI Intern",
+    "grade": "B",
+    "score": 4.2,
+    "status": "to_apply",
+    "source": "manual",
+    "url": "https://careers.microsoft.com/",
+    "salary_listed": "Not disclosed",
+    "location": "India (Bangalore/Hyderabad)",
+    "date_found": "2026-05-06",
+    "date_applied": null,
+    "next_action": "Apply with tailored CV",
+    "notes": "Tailored CV generated for 2026 batch. Strong match for TensorFlow/Python skills."
+  }
+]
