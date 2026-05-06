@@ -22,16 +22,17 @@ I made several improvements to personalize this for my job search:
 ## 📊 Sample Output
 
 Here's what the evaluation looks like for a real job:
+
+```
 Job: Software Engineer @ Druva
 Score: B+ (85% match)
 
 ✅ Strong matches: Python, JavaScript, REST APIs
-⚠️ Partial: Docker (basic exposure)
+⚠️  Partial: Docker (basic exposure)
 ❌ Gaps: Kubernetes (learning)
 
 Recommendation: APPLY WITH TAILORED RESUME
-
-text
+```
 
 ## 💻 Tech Stack
 
@@ -44,35 +45,34 @@ text
 | Tracking | JSON pipeline + dashboard |
 | Version Control | Git + GitHub |
 
-
-
 ## 📁 Project Structure
+
+```
 career-ops-india/
 ├── config/
-│ ├── profile.example.yml # Template configuration
-│ └── profile.yml # My personalized settings
+│   ├── profile.example.yml   # Template configuration
+│   └── profile.yml           # My personalized settings
 ├── scripts/
-│ ├── scan.mjs # Job scanning module
-│ └── dashboard.mjs # Visual pipeline dashboard
+│   ├── scan.mjs              # Job scanning module
+│   └── dashboard.mjs         # Visual pipeline dashboard
 ├── data/
-│ └── scan_results.json # Cached job results
-├── output/ # Generated tailored resumes
-├── cv.md # My resume (plain text)
-└── README.md # This file
-
-text
+│   └── scan_results.json     # Cached job results
+├── output/                   # Generated tailored resumes
+├── cv.md                     # My resume (plain text)
+└── README.md                 # This file
+```
 
 ## 🔧 How to Run This (For Recruiters/Developers)
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - Google account (for Gemini CLI - free)
 - Git
 
 ### Setup Instructions
 
-bash
+```bash
 # Clone my fork
 git clone https://github.com/HasiniKoyalkar/JobApplier
 cd JobApplier
@@ -98,63 +98,60 @@ gemini
 
 # Evaluate a job
 /evaluate https://company.com/careers/job-id
-Available Commands
-Command	What It Does
-npm run scan	Find jobs from 196 Indian companies
-npm run doctor	Verify everything is configured correctly
-npm run dashboard	Open visual application tracker
-npm run liveness	Check if job links are still active
-gemini	Launch AI evaluator
-/evaluate [url]	Score a specific job (A-F)
-/pdf [company] [role]	Generate tailored resume PDF
-/tracker	Log applications to pipeline
-/pipeline	View all tracked applications
-/batch [file]	Evaluate multiple jobs at once
-🎯 What I Learned
+```
+
+### Available Commands
+
+| Command | What It Does |
+|:---|:---|
+| `npm run scan` | Find jobs from 196 Indian companies |
+| `npm run doctor` | Verify everything is configured correctly |
+| `npm run dashboard` | Open visual application tracker |
+| `npm run liveness` | Check if job links are still active |
+| `gemini` | Launch AI evaluator |
+| `/evaluate [url]` | Score a specific job (A-F) |
+| `/pdf [company] [role]` | Generate tailored resume PDF |
+| `/tracker` | Log applications to pipeline |
+| `/pipeline` | View all tracked applications |
+| `/batch [file]` | Evaluate multiple jobs at once |
+
+## 🎯 What I Learned
+
 Building and customizing this tool taught me:
 
-ATS Systems - How modern ATS platforms (Greenhouse, Lever, Ashby) structure job data and accept applications
+- **ATS Systems** - How modern ATS platforms (Greenhouse, Lever, Ashby) structure job data and accept applications
+- **LLM Prompt Engineering** - Designing structured prompts for consistent A-F scoring with explainable gap analysis
+- **Production CLI Tools** - Building Node.js scripts with proper error handling and configuration management
+- **Resume Optimization** - Moving beyond keyword matching to semantic understanding for better ATS scores
+- **API Integration** - Working with multiple job board APIs without scraping
 
-LLM Prompt Engineering - Designing structured prompts for consistent A-F scoring with explainable gap analysis
+## 🔗 Useful Resources
 
-Production CLI Tools - Building Node.js scripts with proper error handling and configuration management
+- [Original Career-Ops Repository](https://github.com/santifer/career-ops)
+- [Career-Ops India Fork](https://github.com/AnojSKunte/career-ops-india)
+- [Google Gemini CLI Documentation](https://ai.google.dev/gemini-api/docs)
 
-Resume Optimization - Moving beyond keyword matching to semantic understanding for better ATS scores
+## 📌 Future Improvements
 
-API Integration - Working with multiple job board APIs without scraping
+- [ ] Add support for 10 more Indian startups
+- [ ] Build a web dashboard (currently CLI-only)
+- [ ] Automate daily scans with GitHub Actions
+- [ ] Add email notifications for new matching jobs
 
-🔗 Useful Resources
-Original Career-Ops Repository
+## 📫 Connect With Me
 
-Career-Ops India Fork
+- **LinkedIn:** [hasini-koyalkar](https://www.linkedin.com/in/hasini-koyalkar-104b1b347/)
+- **GitHub:** [HasiniKoyalkar](https://github.com/HasiniKoyalkar/)
+- **Email:** hasinikoyalkar12@gmail.com
 
-Google Gemini CLI Documentation
+## ⭐ Acknowledgments
 
-📌 Future Improvements
-Add support for 10 more Indian startups
+- Original author: [@santifer](https://github.com/santifer)
+- India fork: [@AnojSKunte](https://github.com/AnojSKunte)
+- Google Gemini team for the free CLI
 
-Build a web dashboard (currently CLI-only)
+*Built as part of my active job search — open to Software Engineering opportunities in Bangalore, Hyderabad, or Remote.*
 
-Automate daily scans with GitHub Actions
-
-Add email notifications for new matching jobs
-
-📫 Connect With Me
-LinkedIn: [https://www.linkedin.com/in/hasini-koyalkar-104b1b347/]
-
-GitHub: [https://github.com/HasiniKoyalkar/]
-
-Email: [hasinikoyalkar12@gmail.com]
-
-
-
-⭐ Acknowledgments
-Original author: @santifer
-
-India fork: @AnojSKunte
-
-Google Gemini team for the free CLI
-
-Built as part of my active job search - open to Software Engineering opportunities in Bangalore, Hyderabad, or Remote
+---
 
 ⭐ Star this repo if you found it useful!
