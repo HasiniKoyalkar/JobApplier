@@ -1,12 +1,12 @@
 # 🎯 Career-Ops India: Personalized AI Job Search Pipeline
 
-> **Used this tool to find and apply to 15+ roles in 2 weeks | Received interview callbacks**
+
 
 ## 🚀 What This Project Does
 
 This is a **personalized fork** of Career-Ops India - an AI-powered job search pipeline that:
 
-- Scans **196 Indian companies** (Razorpay, CRED, Zepto, Postman, Druva, etc.) via their official ATS APIs
+- Scans **Job Openings** (Razorpay, CRED, Zepto, Postman, Druva, etc.) via their official ATS APIs
 - Evaluates my fit for each role using **Gemini AI** with an A-F scoring rubric
 - Generates **tailored resumes** optimized for each job description
 - Tracks applications with a **visual pipeline dashboard**
