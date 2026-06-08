@@ -1,4 +1,4 @@
-# 🎯 Career-Ops India: Personalized AI Job Search Pipeline
+# 🎯 RecruitIQ: Personalized AI Job Search Pipeline
 
 
 
